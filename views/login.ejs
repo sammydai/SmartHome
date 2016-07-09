@@ -1,0 +1,71 @@
+<%-include header %>
+
+<body>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/">SmartHome</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+					<li><a href="/">首页</a></li>
+					<% if(user){ %>
+					<li><a href="/logout">登出</a></li>
+					<li><a href="/device">设备控制</a></li>
+					<li><a href="/ems">能源管理</a></li>
+					<% } else { %> 
+					<li class="active"><a href="/login">登录</a></li>
+					<li><a href="/reg">注册</a></li>
+					<% } %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<form class="form-horizontal" method="post">
+	<fieldset>
+	<div class="container">
+			<legend class="form-signin-heading">用户登录</legend>
+
+	<div class="control-group">
+			<label class="control-label" for="name">用户名</label>
+			<div class="controls">
+			<label for="name">
+				<input type="text" class="input-xlarge" id="name" name="name" placeholder="EmailAddress" />
+			</label>
+			</div>
+
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="password">密码</label>
+		<div class="controls">
+		<label for="password">
+			<input type="password" class="input-xlarge" id="password" name="password" placeholder="Password" />
+		</label>
+		</div>
+	</div>
+	<div class="control-group">
+	<div class="controls">
+	<label class="checkbox">
+		<input type="checkbox">记住我
+	</label>
+	</div>
+
+	<div class="form-actions">
+			<button type="submit" class="btn btn-primary">登录</button>
+			<button type="reset" class="btn">取消</button>
+	</div>
+	</div>
+</div>
+	
+</fieldset>
+</form>
+
+<hr />
+<%-include footer %>

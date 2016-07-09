@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title><%= title %> - SmartHome </title>
+<link rel="stylesheet" href="/stylesheets/bootstrap.css" />
+<link rel="stylesheet" href="/stylesheets/bootstrap-table.css">
+<style type="text/css">
+	body{
+		padding-top:60px;
+		padding-bottom:40px;
+		}
+</style>
+<link href="/stylesheets/bootstrap-responsive.css" rel="stylesheet" />
+</head>
+<% if(success) { %>
+	<div class="alert alert-success">
+	<%= success %>
+	</div>
+<% } %>
+
+<% if(error) { %>
+	<div class="alert alert-error">
+	<%= error %>
+	</div>
+<% } %>
