@@ -10,15 +10,17 @@ io.on('connection', function(_socket){
 
 io.emit('some event', { for: 'everyone' });
 
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-  	var time=getTime();
-    io.emit('chat message', msg,time);
+io.on('connection',function(socket){
+  socket.emit('news',{hello:'this is server from windows'});
+  socket.on('my other event', function (data) {
+    console.log(data);
   });
-});
-
-
+  socket.on('toServer',function(randomNum){
+    console.log(randomNum);
+    var time=getTime();
+    io.emit('toServer',randomNum,time);
+  });
+  });
 
 
 var getTime=function(){
@@ -26,6 +28,8 @@ var getTime=function(){
   return date.toLocaleString();
 }
 
+
 exports.listen = function (_server) {
     return io.listen(_server);
 };
+
