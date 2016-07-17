@@ -1,23 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var Device=require('../models/device');
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/smarthome');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function(callback) {
-  console.log('mongoose opened!');
-  var deviceSchema=new mongoose.Schema({
-  	name:String,
-  	power:{type:Number,default:0},
-  	devicestatus:{type:Boolean,default:false},
-  	time:{type:Date,default:Date.now}
-  },
-  {collection:'device'}
-  );
- var Device=mongoose.model('device',deviceSchema);
+ /*Device.find({name:'testformongodbmodel'},function(err,device){
+  console.log('this is from device page:device');
+  console.log(device);
+  console.log('findsuccess!');
  });
-
 
 
 /*function Device(name){
@@ -37,14 +26,27 @@ Device.save=function(callback){
 
 router.get('/device',checkLogin);
 router.get('/device',function(req,res){
-	res.render('device',{
+
+Device.findOne({name:'testformongodbmodel'},function(err,device){
+  console.log('this is from device page:device');
+  console.log(device.time);
+  console.log(device.power);
+  console.log('findsuccess!');
+  	res.render('device',{
 		title:'Device',
+		powerrate:device.power,
+		time:device.time,
 		user:req.session.user,
 		success:req.flash('success').toString(),
 		error:req.flash('error').toString()
 	});
+
+ });
+
+
 });
 
+var devicedata=Device.findOne();
 
 function checkLogin(req,res,next){
 	if (!req.session.user) {
@@ -54,6 +56,7 @@ function checkLogin(req,res,next){
 
 	next();
 }
+
 
 module.exports = router;
 
