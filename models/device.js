@@ -1,61 +1,46 @@
-/*var mongodb=require('./db');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/smarthome');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(callback) {
+  console.log('socket mongoose opened!');
+ });
 
-function User(user) {
-	this.name=user.name;
-	this.password=user.password;
-};
-module.exports=User;
 
-User.prototype.save=function(callback){
-	//save to Mongodb files
-	var user={
-		name: this.name,
-		password: this.password,
-	};
-	mongodb.open(function(err,db){
-		if(err){
-			return callback(err);
-		}
-	//read users collection
-	db.collection('users',function(err,collection){
-		if (err) {
-			mongodb.close();
-			return callback(err);
-		}
-	//write to user file
-	collection.insert(user,{
-		safe:true
-	},function(err,user){
-		mongodb.close();
-		if (err) {
-			return callback(err);
-		}
-		callback(null,user[0]);
-	});
-	});
-	});
-};
+var deviceSchema=new mongoose.Schema({
+    name:String,
+    power:{type:Number,default:0},
+    devicestatus:{type:Boolean,default:false},
+    time:{type:String,default:Date.now}
+  },
+  {collection:'device'}
+  );
 
-//
-User.get=function(name,callback){
-	mongodb.open(function(err,db){
-		if (err) {
-			return callback(err);
-		}
-	db.collection('users',function(err,collection){
-		if (err) {
-			mongodb.close();
-			return callback(err);
-		}
-	collection.findOne({
-		name:name
-	},function(err,user){
-		mongodb.close();
-		if (err) {
-			return callback(err);
-		}
-		callback(null,user);
-	});
-	});
-	});
-};*/
+ deviceSchema.methods.speak=function(){
+  console.log('this is my name'+this.name);
+ }
+
+ var Device=mongoose.model('device',deviceSchema);
+
+module.exports = Device;
+
+
+/*
+ var testEntity=new Device({name:'this is test socket outside the function'});
+ testEntity.speak();
+ console.log(testEntity.name);
+ testEntity.save();
+
+
+*/
+
+
+/*
+ Device.find({name:'testformongodb'},function(err,docs){
+  console.log(docs);
+  console.log('findsuccess!');
+ });
+*/
+
+
+

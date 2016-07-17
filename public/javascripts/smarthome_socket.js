@@ -1,12 +1,10 @@
-  var socket = io();
-  $('.mytest').submit(function(){
-    socket.emit('chat message', $('#m').val());
-    $('#m').val('');
-    return false;
-  });
+var socket = io();
 
-socket.on('chat message', function(msg,time){
-    $('.powerrate:gt(0)').text(msg);
+  socket.on('toServer',function(randomNum,time){
+    $('#messages').append($('<li>').text(time+':'+randomNum));
+    $('#power').text(randomNum);
+    $('#updatetime').text(time);
+    $('.powerrate:gt(0)').text(randomNum);
     $('.updatetime:gt(0)').text(time);
   });
 
