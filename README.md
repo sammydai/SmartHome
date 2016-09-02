@@ -25,8 +25,8 @@ This is a draft of smart home web app and further work will be committed to here
 
 What you need before your start:
 
-*`Node.js` version>=6.5.0 https://nodejs.org/en/
-*`MongoDB` version>=3.2.9 https://www.mongodb.com/ 
+* `Node.js` version>=6.5.0 https://nodejs.org/en/
+* `MongoDB` version>=3.2.9 https://www.mongodb.com/ 
 
 Make sure that the `mongod` and `node` commands are available on your path.
 
@@ -38,9 +38,9 @@ Checkout the source code from GitHub,by running
 
 ### Installation
 
-*Run `cd app&npm install` to install node modules by `package.json` file. 
-*Run `mongod --dpath where your database` to initialize the MongoDB.
-*Run `SET DEBUG=smarthome.app:* & npm start` to start the smart home app.
+* Run `cd app&npm install` to install node modules by `package.json` file. 
+* Run `mongod --dpath where your database` to initialize the MongoDB.
+* Run `SET DEBUG=smarthome.app:* & npm start` to start the smart home app.
 
 Your can refer to `http://localhost:3000` to the homepage.
 
